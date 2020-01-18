@@ -13,7 +13,7 @@ class DigitComboApplicationTests{
 
     @Test
     void inputNumber() {
-        charCombiner.setNumber("23");
+        charCombiner.setNumber("78");
         charCombiner.printMappingChars();
         charCombiner.setNumber("");
         charCombiner.printMappingChars();

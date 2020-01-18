@@ -32,7 +32,7 @@ public class CharCombiner {
                 String lastElement = "";
                 // get mapping characters
                 String mappingChars = DigitConstants.
-                        DIGIT_CHAR[tempNumber.charAt(firstElement.length()) - '0']; //convert ASC II
+                        DIGIT_CHARS[tempNumber.charAt(firstElement.length()) - '0']; //convert ASC II
                 for (char character : mappingChars.toCharArray()) {
                     lastElement = firstElement + character;
                     characters.add(lastElement);
