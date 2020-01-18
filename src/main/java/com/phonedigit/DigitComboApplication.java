@@ -6,12 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
+
+import java.util.Objects;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class DigitComboApplication implements CommandLineRunner {
+public class DigitComboApplication implements CommandLineRunner, EnvironmentAware {
     @Autowired
     private CharCombiner charCombiner;
+    private Environment environment;
+
+    final String TEST = "test";
 
     public static void main(String[] args) {
         SpringApplication.run(DigitComboApplication.class, args);
@@ -19,6 +26,10 @@ public class DigitComboApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if (Objects.equals(environment.getActiveProfiles()[0], TEST)){
+            return;
+        }
+
         System.out.println("=================== Welcome ===================");
         System.out.println("a. Convert number into corresponding characters.");
         System.out.println("b. Convert 0 ~ 99 into corresponding characters.");
@@ -54,5 +65,10 @@ public class DigitComboApplication implements CommandLineRunner {
             System.out.println("Please enter an option (a/b/c): ");
             option = scanner.nextLine();
         }
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 }
